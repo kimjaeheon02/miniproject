@@ -32,9 +32,14 @@ body {
 </head>
 <body>
 <%if(result!=""){ %>
-이름 : <%=result %>
+<script>
+location.href="main_insert.jsp?id=<%=donworryDTO.getId()%>";
+</script>
 <%}else{ %>
-	오류
+<script>
+	alert('글쓰기 실패');
+	location.href='javascript:history.back()';
+</script>
 <%} %>
 </body>
 </html>

@@ -1,10 +1,36 @@
 package donWorry;
 
-public class donWorryDTO {
+import java.io.Serializable;
+
+public class donWorryDTO implements Serializable{
 	private String id;
 	private String name;
 	private String password;
 	private Long private_no;
+	
+	private String date;
+	private Long income;
+	private Long expense;
+	
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public Long getIncome() {
+		return income;
+	}
+	public void setIncome(Long income) {
+		this.income = income;
+	}
+	public Long getExpense() {
+		return expense;
+	}
+	public void setExpense(Long expense) {
+		this.expense = expense;
+	}
 	public String getName() {
 		return name;
 	}
@@ -31,9 +57,10 @@ public class donWorryDTO {
 	}
 	@Override
 	public String toString() {
-		return "donWorryDTO [id=" + id + ", name=" + name + ", password=" + password + ", private_no="
-				+ private_no + "]";
+		return "donWorryDTO [id=" + id + ", name=" + name + ", password=" + password + ", private_no=" + private_no
+				+ ", date=" + date + ", income=" + income + ", expense=" + expense + "]";
 	}
+
 	
 	
 }
