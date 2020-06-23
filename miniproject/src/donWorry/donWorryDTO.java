@@ -6,13 +6,35 @@ public class donWorryDTO implements Serializable{
 	private String id;
 	private String name;
 	private String password;
-	private Long private_no;
+	private String email;
 	
 	private String date;
 	private Long income;
 	private Long expense;
-	
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getDate() {
 		return date;
 	}
@@ -31,36 +53,13 @@ public class donWorryDTO implements Serializable{
 	public void setExpense(Long expense) {
 		this.expense = expense;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Long getPrivate_no() {
-		return private_no;
-	}
-	public void setPrivate_no(Long private_no) {
-		this.private_no = private_no;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	@Override
 	public String toString() {
-		return "donWorryDTO [id=" + id + ", name=" + name + ", password=" + password + ", private_no=" + private_no
-				+ ", date=" + date + ", income=" + income + ", expense=" + expense + "]";
+		return "donWorryDTO [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", date="
+				+ date + ", income=" + income + ", expense=" + expense + "]";
 	}
-
+	
+	
 	
 	
 }

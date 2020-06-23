@@ -43,7 +43,7 @@ public class donWorryDAO {
 			pstmt.setString(1, donworryDTO.getId());
 			pstmt.setString(2, donworryDTO.getPassword());
 			pstmt.setString(3, donworryDTO.getName());
-			pstmt.setLong(4, donworryDTO.getPrivate_no());
+			pstmt.setString(4, donworryDTO.getEmail());
 			if(pstmt.executeUpdate()>0) {
 				result = true;
 			}
