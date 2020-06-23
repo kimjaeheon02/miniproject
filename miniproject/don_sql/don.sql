@@ -1,12 +1,12 @@
-create table test (no number);
 
-select * from test;
+
 
 create table members(
-id varchar2(20) primary key,
+no number primary key,
+id varchar2(20) not null,
 password varchar2(128) not null, 
-name varchar2(10) not null,
-private_no varchar2(20) unique);
+name varchar2(20) not null,
+e_mail varchar2(30) not null);
 
 create sequence members_no_seq
 start with 1

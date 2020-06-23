@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Mapvel Login</title>
+
+  <!-- Bootstrap -->
+  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="resources/vendor/nprogress/nprogress.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="resources/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <!-- BootStrap DatePicker CSS -->
+  <link href="resources/vendor/bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="resources/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body class="login">
+  <div>
+    <a class="hiddenanchor" id="signup"></a> <a class="hiddenanchor" id="signin"></a> <a class="hiddenanchor" id="forget"></a>
+
+    <div class="login_wrapper">
+      <!-- 로그인 페이지 Start -->
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form id="login-register" action="login-check.do" method="post">
+            <h1>
+              <a href="main.do"><img src="resources/img/logo/mapvel-bi.png"></a>
+            </h1>
+            <div>
+              <input type="email" class="form-control" placeholder="UserEmail" id="User_email_forget" name="email" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" id="User_pw_forget" name="password" />
+            </div>
+            <div>
+              <input type="button" class="rectangle-btn-login" value="Log in" onclick="Login();"> <a class="reset_pass" href="#forget">Lost
+                your password?</a> <a class="signup_text" href="#signup">Don’t
+                have an account? <span class="sign-up-link">Sign up</span>
+              </a>
+            </div>
+
+            <div class="clearfix">
+              <div class="under-bar-left"></div>
+              <div class="under-bar-center">or</div>
+              <div class="under-bar-right"></div>
+            </div>
+
+            <div class="social-form">
+              <a href="main.do"><img src="resources/img/logo/mapvel-bi.png"></a>
+            </div>
+
+            <div class="separator">
+              <div>
+                <p>©2020 All Rights Rewerved. Mapvel</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <!-- 로그인 페이지 End -->
+
+      <!-- 비밀번호 찾기 페이지 Start -->
+      <div id="forgetpw" class="animate form forgetration_form">
+        <section class="login_content">
+          <form id="forget-register" modelAttribute="userVO" method="post">
+            <p class="Forget-Account">Forget Account
+            <p>
+            <div class="font-13 Rectangle-Copy-4">
+              <label>If you do not know your current password, enter an
+                email address you used to create your ID. We will send a
+                temporary password. You can change the password after you log
+                in.</label> <label>If you have a social log in account, please
+                follow your social account recovery procedure.</label>
+            </div>
+
+            <div>
+              <input type="email" name="User_email" class="form-control" placeholder="UserEmail" />
+            </div>
+            <div>
+              <input type="button" class="rectangle-btn-login" value="Send Email" onclick="findpw_bt();">
+            </div>
+
+            <div class="separator">
+              <p class="change_link">
+                <a class="Already-a-member-Lo" href="#signin">Already a
+                  member ? <span class="sign-up-link">Log in </span>
+                </a>
+              </p>
+
+              <div class="separator">
+                <div>
+                  <p>©2020 All Rights Rewerved. Mapvel</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <!-- 비밀번호 찾기 페이지 End -->
+
+      <!-- 회원가입 페이지 Start -->
+      <div id="register" class="animate form registration_form">
+        <section class="login_content">
+          <form id="signup-register" modelAttribute="userVO" action="/signup.do" method="post" enctype="multipart/form-data">
+            <p class="Create-Account">Create Account
+            <p>
+
+            <div>
+              <input type="email" class="form-control" placeholder="UserEmail" id="User_email" name="User_email" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" id="User_pw" name="User_pw" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Confirm Password" id="Confirm_Password" name="Confirm_Password" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="First Name" id="User_firstname" name="User_firstname" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Last Name" id="User_lastname" name="User_lastname" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Date Of Birth (ex. month-day-year)" id="User_birth" name="User_birth" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Phone number" id="User_phone_number" name="User_phone_number" />
+            </div>
+            <div>
+              <select id="User_sex" name="User_sex" class="form-control">
+                <option value="-1">--- Gender ---</option>
+                <option value="m">Man</option>
+                <option value="f">Female</option>
+              </select>
+            </div>
+            <div>
+              <input type="button" class="btn btn-default Rectangle-Signup-Copy" value="Sign up" onclick="singup_bt();">
+            </div>
+
+            <div class="separator">
+              <p class="change_link">
+                <a class="Already-a-member-Lo" href="#signin">Already a
+                  member ? <span class="sign-up-link">Log in </span>
+                </a>
+              </p>
+
+              <div>
+                <p>©2020 All Rights Reserved. Mapvel!</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <!-- 회원가입 페이지 End -->
+    </div>
+  </div>
+
+  <!-- 모달 영역 -->
+  <!-- 필수 선택 체크 하지 않았을 경우 Modal -->
+  <div class="modal fade" id="PolicyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check here to indicate that you
+          have read and agree to the terms of the Mapvel Privacy Policy</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 비밀번호가 같지 않을 경우 Modal -->
+  <div class="modal fade" id="PasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Password</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FirstName, LastName 미 입력시 Modal -->
+  <div class="modal fade" id="NameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check First Name, Last Name</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_email 미 입력시 Modal -->
+  <div class="modal fade" id="EmailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Email</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_birth 미 입력시 Modal -->
+  <div class="modal fade" id="BirthModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Date of Birth</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_country_number 미 입력시 Modal -->
+  <div class="modal fade" id="CountryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Country Code</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_phone_number 미 입력시 Modal -->
+  <div class="modal fade" id="PhoneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Phone Number</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_resident_country 미 입력시 Modal -->
+  <div class="modal fade" id="ResidentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Country of residence</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User_sex 미 입력시 Modal -->
+  <div class="modal fade" id="GenderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Gender</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FaultModal 로그인 실패 시  Modal -->
+  <div class="modal fade" id="FaultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check UserEmail, Password</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ForgetModal 비밀번호 찾기 성공 시  Modal -->
+  <div class="modal fade" id="ForgetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Email Sending</h4>
+        </div>
+        <div class="modal-body">The email has been sent to the email
+          you entered.</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="LocationLogin();">Go Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ForgetFModal 비밀번호 찾기 실패 시  Modal -->
+  <div class="modal fade" id="ForgetFModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Please Check</h4>
+        </div>
+        <div class="modal-body">Please Check Email</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Server Error  Modal -->
+  <div class="modal fade" id="ServiceEModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Server Error</h4>
+        </div>
+        <div class="modal-body">We are currently checking the server.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- jQuery Smart Wizard -->
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Ajax -->
+<script>
+  function Login() {
+    $.ajax({
+      url: "login-check.do",
+      type: "POST",
+      data: $("#login-register").serialize(),
+      success: function(data) {
+        if (data == "false") {
+          $('#PasswordModal').modal();
+        } else {
+          window.location.href = "main.do";
+        }
+      },
+      error: function() {
+        $('#PolicyModal').modal();
+      }
+    });
+  }
+
+  function findpw_bt() {
+    $.ajax({
+      url: "mailSending.do",
+      type: "POST",
+      data: $("#forget-register").serialize(),
+      success: function(data) {
+        if (data == "false") {
+          $('#ServiceEModal').modal();
+        } else if (data == "-1") {
+          $('#ForgetFModal').modal();
+        } else {
+          $('#ForgetModal').modal();
+        }
+      },
+      error: function() {
+        $('#ServiceEModal').modal();
+      }
+    });
+  }
+
+  function LocationLogin() {
+    window.location.href = "login.do";
+  }
+</script>
+
+<!-- 예외 처리 -->
+<script>
+  function singup_bt() {
+    var policy = document.getElementById("User_policy").checked;
+    var user_mail = document.getElementById("User_email").value;
+    var password_1 = document.getElementById("User_pw").value;
+    var password_2 = document.getElementById("Confirm_Password").value;
+    var firstname = document.getElementById("User_firstname").value;
+    var lastname = document.getElementById("User_lastname").value;
+    var birth = document.getElementById("User_birth").value;
+
+    var country_number = document.getElementById("User_country_number");
+    var country_number_value = country_number.options[country_number.selectedIndex].value;
+
+    var phone = document.getElementById("User_phone_number").value;
+    var resident_country = document.getElementById("User_resident_country");
+    var resident_country_value = resident_country.options[resident_country.selectedIndex].value;
+
+    var sex = document.getElementById("User_sex").value;
+
+    if (policy == false) {
+      $('#PolicyModal').modal();
+    } else if (user_mail == "") {
+      $('#EmailModal').modal();
+    } else if (password_1 != password_2 || password_1 == "" ||
+      password_2 == "") {
+      $('#PasswordModal').modal();
+    } else if (firstname == "" || lastname == "") {
+      $('#NameModal').modal();
+    } else if (!birth) {
+      $('#BirthModal').modal();
+    } else if (country_number_value == "-1") {
+      $('#CountryModal').modal();
+    } else if (phone == "") {
+      $('#PhoneModal').modal();
+    } else if (resident_country_value == "-1") {
+      $('#ResidentModal').modal();
+    } else if (sex == "-1") {
+      $('#GenderModal').modal();
+    } else {
+      document.getElementById("signup-register").submit();
+    }
+  }
+</script>
+
+<!-- User_birth mm-dd-yyyy 값으로 넣을 수 있게 예외 처리 -->
+<script type="text/javascript">
+  $(function() {
+    $('#User_birth').datepicker({
+      format: "yyyy-mm-dd", //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+      autoclose: true, //사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+      calendarWeeks: false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
+      clearBtn: false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
+      disableTouchKeyboard: false, //모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
+      immediateUpdates: false, //사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false
+      multidate: false, //여러 날짜 선택할 수 있게 하는 옵션 기본값 :false
+      multidateSeparator: ",", //여러 날짜를 선택했을 때 사이에 나타나는 글짜 2019-05-01,2019-06-01
+      templates: {
+        leftArrow: '&laquo;',
+        rightArrow: '&raquo;'
+      }, //다음달 이전달로 넘어가는 화살표 모양 커스텀 마이징
+      showWeekDays: true, // 위에 요일 보여주는 옵션 기본값 : true
+      todayHighlight: true, //오늘 날짜에 하이라이팅 기능 기본값 :false
+      toggleActive: true, //이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
+      weekStart: 0
+      //달력 시작 요일 선택하는 것 기본값은 0인 일요일
+    }); //datepicker end
+  }); //ready end
+
+  $('#User_email_forget').keypress(function(event) {
+    if (event.which == 13) {
+      Login();
+      return false;
+    }
+  });
+  $('#User_pw_forget').keypress(function(event) {
+    if (event.which == 13) {
+      Login();
+      return false;
+    }
+  });
+</script>
+
+</html>
