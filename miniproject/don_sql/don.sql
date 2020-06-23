@@ -3,8 +3,8 @@ create table test (no number);
 select * from test;
 
 create table members(
-id varchar2(12) primary key,
-password varchar2(20) not null, 
+id varchar2(20) primary key,
+password varchar2(128) not null, 
 name varchar2(10) not null,
 private_no varchar2(20) unique);
 
