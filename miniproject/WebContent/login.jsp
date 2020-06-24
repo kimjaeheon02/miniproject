@@ -41,7 +41,7 @@
 			<!-- 로그인 페이지 Start -->
 			<div class="animate form login_form">
 				<section class="login_content">
-					<form id="login-register" action="login-check.do" method="post">
+					<form id="login-register" action="login_action.jsp" method="post">
 						<h1>
 							<a href="main.do"><img src="resources/img/logo/돈.png"></a>
 						</h1>
@@ -82,7 +82,7 @@
 			<!-- 회원가입 페이지 Start -->
 			<div id="register" class="animate form registration_form">
 				<section class="login_content">
-					<form id="signup-register" action="donWorry_test/insert_action_test.jsp" method="post">
+					<form id="signup-register" method="post">
 						<p class="Create-Account">회원가입
 						<p>
 						<div>
@@ -172,14 +172,14 @@
 <script>
 	function Login() {
 		$.ajax({
-			url : "login-check.do",
+			url : "login_action.jsp",
 			type : "POST",
 			data : $("#login-register").serialize(),
 			success : function(data) {
-				if (data == "false") {
+				if (data.trim() == "false") {
 					$('#PasswordModal').modal();
 				} else {
-					window.location.href = "main.do";
+					window.location.href = "main/main.jsp";
 				}
 			},
 			error : function() {
