@@ -28,7 +28,7 @@ public class donWorryDAO {
 		return DriverManager.getConnection("jdbc:log4jdbc:oracle:thin:@localhost:1521:xe","don","don123");
 	}
 	
-	public boolean insertdonWorry(donWorryDTO donworryDTO) {
+	public boolean insertdonWorry(MembersDTO membersDTO) {
 		boolean result = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -40,10 +40,10 @@ public class donWorryDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, donworryDTO.getId());
-			pstmt.setString(2, donworryDTO.getPassword());
-			pstmt.setString(3, donworryDTO.getName());
-			pstmt.setString(4, donworryDTO.getEmail());
+			pstmt.setString(1, membersDTO.getId());
+			pstmt.setString(2, membersDTO.getPassword());
+			pstmt.setString(3, membersDTO.getName());
+			pstmt.setString(4, membersDTO.getEmail());
 			if(pstmt.executeUpdate()>0) {
 				result = true;
 			}
@@ -56,7 +56,7 @@ public class donWorryDAO {
 		return result;
 	}
 
-	public String checkdonWorry(donWorryDTO donworryDTO) throws SQLException {
+	public String checkdonWorry(MembersDTO membersDTO) throws SQLException {
 		String result = "";
 		
 		StringBuffer sql = new StringBuffer();
@@ -68,8 +68,8 @@ public class donWorryDAO {
 		try(Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 			
-			pstmt.setString(1, donworryDTO.getId());
-			pstmt.setString(2, donworryDTO.getPassword());
+			pstmt.setString(1, membersDTO.getId());
+			pstmt.setString(2, membersDTO.getPassword());
 			
 			try (ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()) {
@@ -85,7 +85,7 @@ public class donWorryDAO {
 		return result;
 	}
 	
-	public boolean insertMoney(donWorryDTO donworryDTO) {
+	public boolean insertMoney(InputOutputDTO inputoutputDTO) {
 		boolean result = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -97,12 +97,12 @@ public class donWorryDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, donworryDTO.getId());
-			pstmt.setString(2, donworryDTO.getRegdate());
-			pstmt.setInt(3, donworryDTO.getCategory());
-			pstmt.setInt(4, donworryDTO.getIo());
-			pstmt.setInt(5, donworryDTO.getMoney());
-			pstmt.setString(6, donworryDTO.getMemo());
+			pstmt.setString(1, inputoutputDTO.getId());
+			pstmt.setString(2, inputoutputDTO.getRegdate());
+			pstmt.setInt(3, inputoutputDTO.getCategory());
+			pstmt.setInt(4, inputoutputDTO.getIo());
+			pstmt.setInt(5, inputoutputDTO.getMoney());
+			pstmt.setString(6, inputoutputDTO.getMemo());
 			
 			if(pstmt.executeUpdate()>0) {
 				result = true;

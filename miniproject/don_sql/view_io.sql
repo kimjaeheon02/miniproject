@@ -1,6 +1,7 @@
 
 /* Drop Tables */
 
+DROP TABLE base_category CASCADE CONSTRAINTS;
 DROP TABLE category CASCADE CONSTRAINTS;
 DROP TABLE input_output CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
@@ -25,6 +26,20 @@ CREATE SEQUENCE members_no_seq INCREMENT BY 1 START WITH 1;
 
 
 /* Create Tables */
+
+CREATE TABLE base_category
+(
+	cate_name varchar2(20) NOT NULL
+);
+insert into BASE_CATEGORY values ('식료품');
+insert into BASE_CATEGORY values ('외식');
+insert into BASE_CATEGORY values ('의복');
+insert into BASE_CATEGORY values ('문화생활');
+insert into BASE_CATEGORY values ('기타');
+
+commit
+
+select * from members;
 
 CREATE TABLE category
 (
@@ -58,7 +73,31 @@ CREATE TABLE members
 	PRIMARY KEY (no)
 );
 
-insert into input_output(no, id, regdate, category, io, money, memo) 
-values (input_output_no_seq.nextval, 
-'2E5CC574DAD9D98FFFD0984F76BFBB13', '2020-06-04', 1, 1, 10000, NULL) 
+insert into category (no, cate_name, id)
+select category_no_seq.nextval, cate_name, 'number1' from base_category;
 
+select * from category;
+
+
+select * from input_output;
+
+
+select no, cate_name
+from category
+where id = 'wishrich'
+order by no;
+
+
+select * from input_output
+where id = 'wishrich';
+
+
+
+select sum(money) from input_output
+where io = 2 and id = 'wishrich';
+
+select io.category, cg.cate_name 
+from input_output io
+inner join category cg
+on io.category = cg.no
+where io.io = 2 and io.id = 'wishrich';

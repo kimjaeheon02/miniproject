@@ -1,5 +1,4 @@
-<%@page import="donWorry.MembersDTO"%>
-<%@page import="donWorry.InputOutputDTO"%>
+<%@page import="donWorry.donWorryDTO"%>
 <%@page import="donWorry.donWorryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,16 +6,16 @@
 	String name 	= request.getParameter("name");
 	String password = request.getParameter("password");
 	String id 		= request.getParameter("id");
-	String email 	= request.getParameter("email");
+	String email = request.getParameter("email");
 	
-	MembersDTO membersDTO = new MembersDTO();
-	membersDTO.setName(name);
-	membersDTO.setPassword(password);
-	membersDTO.setId(id);
-	membersDTO.setEmail(email);
+	donWorryDTO donworryDTO = new donWorryDTO();
+	donworryDTO.setName(name);
+	donworryDTO.setPassword(password);
+	donworryDTO.setId(id);
+	donworryDTO.setEmail(email);
 	
 	donWorryDAO donworryDAO = donWorryDAO.getInstance();
-	boolean result = donworryDAO.insertdonWorry(membersDTO);
+	boolean result = donworryDAO.insertdonWorry(donworryDTO);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,12 +34,11 @@ body {
 <body>
 <% if(result){  %>
 <script>
-	alert('<%=membersDTO.getName() %>님 회원가입 되었습니다.')
-	location.href='../login.jsp';
+	location.href='login.jsp';
 </script>
 <%}else{ %>
 <script>
-	alert('회원가입 실패');
+	alert('글쓰기 실패');
 	location.href='javascript:history.back()';
 </script>
 <% } %>

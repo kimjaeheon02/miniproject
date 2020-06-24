@@ -1,5 +1,5 @@
 <%@page import="donWorry.donWorryDAO"%>
-<%@page import="donWorry.donWorryDTO"%>
+<%@page import="donWorry.InputOutputDTO"%>
 <%@page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,7 +8,7 @@
 	String id 		= request.getParameter("id");
 	String password = request.getParameter("password");
 	
-	donWorryDTO donworryDTO = new donWorryDTO();
+	donWorry.InputOutputDTO donworryDTO = new donWorry.InputOutputDTO();
 	donworryDTO.setId(id);
 	donworryDTO.setPassword(password);
 	

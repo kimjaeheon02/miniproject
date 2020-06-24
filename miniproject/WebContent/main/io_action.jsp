@@ -1,9 +1,8 @@
 <%@page import="donWorry.donWorryDAO"%>
-<%@page import="donWorry.donWorryDTO"%>
+<%@page import="donWorry.InputOutputDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
 	String regdate = request.getParameter("regdate");
 	int category = Integer.parseInt(request.getParameter("category"));
 	int io = Integer.parseInt(request.getParameter("io"));
@@ -11,16 +10,16 @@
 	String memo = request.getParameter("memo");
 	String id = (String) session.getAttribute("id");
 	
-	donWorryDTO donworryDTO = new donWorryDTO();
-	donworryDTO.setId(id);
-	donworryDTO.setRegdate(regdate);
-	donworryDTO.setCategory(category);
-	donworryDTO.setIo(io);
-	donworryDTO.setMoney(money);
-	donworryDTO.setMemo(memo);
+	InputOutputDTO inputoutputDTO = new InputOutputDTO();
+	inputoutputDTO.setId(id);
+	inputoutputDTO.setRegdate(regdate);
+	inputoutputDTO.setCategory(category);
+	inputoutputDTO.setIo(io);
+	inputoutputDTO.setMoney(money);
+	inputoutputDTO.setMemo(memo);
 	
 	donWorryDAO donworryDAO = donWorryDAO.getInstance();
-	boolean result = donworryDAO.insertMoney(donworryDTO);
+	boolean result = donworryDAO.insertMoney(inputoutputDTO);
 %>
 <!DOCTYPE html>
 <html>
