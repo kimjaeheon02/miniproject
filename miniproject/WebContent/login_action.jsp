@@ -1,5 +1,5 @@
-<%@page import="donWorry.MembersDTO"%>
-<%@page import="donWorry.donWorryDAO"%>
+<%@page import="donWorry.MemberDTO"%>
+<%@page import="donWorry.CashBookDAO"%>
 <%@page import="donWorry.InputOutputDTO"%>
 <%@page import="java.util.List"%>
 
@@ -9,11 +9,11 @@
 	String id 		= request.getParameter("id");
 	String password = request.getParameter("password");
 	
-	MembersDTO membersDTO = new MembersDTO();
+	MemberDTO membersDTO = new MemberDTO();
 	membersDTO.setId(id);
 	membersDTO.setPassword(password);
 	
-	donWorryDAO donworryDAO = donWorryDAO.getInstance();
+	CashBookDAO donworryDAO = CashBookDAO.getInstance();
 	//List<donWorryDTO> list = donworryDAO.checkdonWorry();
 	String name = donworryDAO.checkdonWorry(membersDTO);
 	if(!name.equals("")){

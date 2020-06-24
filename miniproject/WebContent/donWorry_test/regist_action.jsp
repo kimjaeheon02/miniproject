@@ -1,6 +1,6 @@
-<%@page import="donWorry.MembersDTO"%>
+<%@page import="donWorry.MemberDTO"%>
 <%@page import="donWorry.InputOutputDTO"%>
-<%@page import="donWorry.donWorryDAO"%>
+<%@page import="donWorry.CashBookDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -9,14 +9,18 @@
 	String id 		= request.getParameter("id");
 	String email 	= request.getParameter("email");
 	
-	MembersDTO membersDTO = new MembersDTO();
+	MemberDTO membersDTO = new MemberDTO();
 	membersDTO.setName(name);
 	membersDTO.setPassword(password);
 	membersDTO.setId(id);
 	membersDTO.setEmail(email);
 	
-	donWorryDAO donworryDAO = donWorryDAO.getInstance();
-	boolean result = donworryDAO.insertdonWorry(membersDTO);
+	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
+	boolean result = cashBookDAO.insertdonWorry(membersDTO);
+	
+	if(result) {
+		cashBookDAO.insertCategory(id);
+	}
 %>
 <!DOCTYPE html>
 <html>

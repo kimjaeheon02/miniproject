@@ -17,13 +17,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['category', 'expense'],
-          ['교통비', 13], ['교통비', 83], ['기타', 1.4],
-          ['Dogri', 2.3], ['Gujarati', 46], ['식비', 300],
-          ['Kannada', 38], ['Kashmiri', 5.5], ['Konkani', 5],
-          ['Maithili', 20], ['Malayalam', 33], ['Manipuri', 1.5],
-          ['문화생활', 72], ['Nepali', 2.9], ['Oriya', 33],
-          ['Punjabi', 29], ['Sanskrit', 0.01], ['Santhali', 6.5],
-          ['Sindhi', 2.5], ['Tamil', 61], ['Telugu', 74], ['Urdu', 52]
+          ['의복', 100000], ['식료품', 50000], ['기타', 200000],
+          ['식비', 300]
         ]);
 
         var options = {
