@@ -9,8 +9,10 @@
 	int io = Integer.parseInt(request.getParameter("io"));
 	int money = Integer.parseInt(request.getParameter("money"));
 	String memo = request.getParameter("memo");
+	String id = (String) session.getAttribute("id");
 	
 	donWorryDTO donworryDTO = new donWorryDTO();
+	donworryDTO.setId(id);
 	donworryDTO.setRegdate(regdate);
 	donworryDTO.setCategory(category);
 	donworryDTO.setIo(io);

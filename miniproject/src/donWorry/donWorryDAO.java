@@ -19,13 +19,13 @@ public class donWorryDAO {
 	
 	private donWorryDAO() {
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
+			Class.forName("net.sf.log4jdbc.DriverSpy");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	private Connection getConnection() throws SQLException{
-		return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","don","don123");
+		return DriverManager.getConnection("jdbc:log4jdbc:oracle:thin:@localhost:1521:xe","don","don123");
 	}
 	
 	public boolean insertdonWorry(donWorryDTO donworryDTO) {
@@ -99,9 +99,9 @@ public class donWorryDAO {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, donworryDTO.getId());
 			pstmt.setString(2, donworryDTO.getRegdate());
-			pstmt.setLong(3, donworryDTO.getCategory());
-			pstmt.setLong(4, donworryDTO.getIo());
-			pstmt.setLong(5, donworryDTO.getMoney());
+			pstmt.setInt(3, donworryDTO.getCategory());
+			pstmt.setInt(4, donworryDTO.getIo());
+			pstmt.setInt(5, donworryDTO.getMoney());
 			pstmt.setString(6, donworryDTO.getMemo());
 			
 			if(pstmt.executeUpdate()>0) {

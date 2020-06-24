@@ -82,14 +82,10 @@
 			<!-- 회원가입 페이지 Start -->
 			<div id="register" class="animate form registration_form">
 				<section class="login_content">
-					<form id="signup-register" method="post">
+					<form id="signup-register" method="post" action="donWorry_test/regist_action.jsp" >
 						<p class="Create-Account">회원가입
 						<p>
 						<div>
-							<input type="email" class="form-control" placeholder="이메일"
-								id="email" name="email" />
-						</div>
-							<div>
 							<input type="text" class="form-control"
 								placeholder="아이디" id="id" name="id" />
 						</div>
@@ -104,6 +100,10 @@
 						<div>
 							<input type="text" class="form-control" placeholder="이름"
 								id="name" name="name" />
+						</div>
+						<div>
+							<input type="email" class="form-control" placeholder="이메일"
+								id="email" name="email" />
 						</div>
 						<div>
 							<input type="button" class="btn btn-default Rectangle-Signup-Copy" 
