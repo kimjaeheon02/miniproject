@@ -33,7 +33,7 @@ body {
 <body>
 <%if(result!=""){ %>
 <script>
-location.href="main_insert.jsp?name=<%=result%>";
+	location.href="main_insert.jsp?id=<%=donworryDTO.getId()%>";
 </script>
 <%}else{ %>
 <script>

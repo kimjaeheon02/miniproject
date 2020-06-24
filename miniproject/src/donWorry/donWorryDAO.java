@@ -85,22 +85,24 @@ public class donWorryDAO {
 		return result;
 	}
 	
-	public boolean insertCalendar(donWorryDTO donworryDTO) {
+	public boolean insertMoney(donWorryDTO donworryDTO) {
 		boolean result = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" insert into (no, id, date_t, income, expense) ");
-		sql.append(" values (seq.nextval, ?, ?, ?, ?) ");
+		sql.append(" insert into input_output(no, id, regdate, category, io, money, memo) ");
+		sql.append(" values (input_output_no_seq.nextval, ?, ?, ?, ?, ?, ?) ");
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, donworryDTO.getId());
-			pstmt.setString(2, donworryDTO.getDate());
-			pstmt.setLong(3, donworryDTO.getIncome());
-			pstmt.setLong(4, donworryDTO.getExpense());
+			pstmt.setString(2, donworryDTO.getRegdate());
+			pstmt.setLong(3, donworryDTO.getCategory());
+			pstmt.setLong(4, donworryDTO.getIo());
+			pstmt.setLong(5, donworryDTO.getMoney());
+			pstmt.setString(6, donworryDTO.getMemo());
 			
 			if(pstmt.executeUpdate()>0) {
 				result = true;

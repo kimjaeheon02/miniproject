@@ -44,7 +44,6 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Insert title here</title>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
 
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
