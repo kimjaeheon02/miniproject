@@ -33,11 +33,11 @@ body {
 <body>
 <%if(result!=""){ %>
 <script>
-location.href="main_insert.jsp?id=<%=donworryDTO.getId()%>";
+location.href="main_insert.jsp?name=<%=result%>";
 </script>
 <%}else{ %>
 <script>
-	alert('글쓰기 실패');
+	alert('아이디 혹은 비밀번호가 틀립니다');
 	location.href='javascript:history.back()';
 </script>
 <%} %>

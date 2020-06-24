@@ -6,13 +6,13 @@
 	String name 	= request.getParameter("name");
 	String password = request.getParameter("password");
 	String id 		= request.getParameter("id");
-	long private_no = Long.parseLong(request.getParameter("private_no"));
+	String email 	= request.getParameter("email");
 	
 	donWorryDTO donworryDTO = new donWorryDTO();
 	donworryDTO.setName(name);
 	donworryDTO.setPassword(password);
 	donworryDTO.setId(id);
-	donworryDTO.setPrivate_no(private_no);
+	donworryDTO.setEmail(email);
 	
 	donWorryDAO donworryDAO = donWorryDAO.getInstance();
 	boolean result = donworryDAO.insertdonWorry(donworryDTO);

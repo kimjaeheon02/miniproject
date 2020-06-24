@@ -34,8 +34,8 @@ public class donWorryDAO {
 		PreparedStatement pstmt = null;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" insert into members(id, password, name, private_no) ");
-		sql.append(" values (?, ?, ?, ?) ");
+		sql.append(" insert into members(no, id, password, name, email) ");
+		sql.append(" values (members_no_seq.nextval, ?, ?, ?, ?) ");
 		
 		try {
 			conn = getConnection();
@@ -43,7 +43,7 @@ public class donWorryDAO {
 			pstmt.setString(1, donworryDTO.getId());
 			pstmt.setString(2, donworryDTO.getPassword());
 			pstmt.setString(3, donworryDTO.getName());
-			pstmt.setLong(4, donworryDTO.getPrivate_no());
+			pstmt.setString(4, donworryDTO.getEmail());
 			if(pstmt.executeUpdate()>0) {
 				result = true;
 			}
