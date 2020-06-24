@@ -82,7 +82,7 @@
 			<!-- 회원가입 페이지 Start -->
 			<div id="register" class="animate form registration_form">
 				<section class="login_content">
-					<form id="signup-register" action="/donWorry_test/insert_action_test.jsp" method="post">
+					<form id="signup-register" action="donWorry_test/insert_action_test.jsp" method="post">
 						<p class="Create-Account">회원가입
 						<p>
 						<div>
@@ -216,7 +216,7 @@
 <!-- 로그인 시 비밀번호 값 확인 예외처리 -->
 <script>
 function signup_check(){
-    var password_1 = document.getElementById("User_pw").value;
+    var password_1 = document.getElementById("password").value;
     var password_2 = document.getElementById("Confirm_Password").value;
 	
     if(password_1 == password_2){
