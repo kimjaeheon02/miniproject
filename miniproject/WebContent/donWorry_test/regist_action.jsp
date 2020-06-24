@@ -34,11 +34,12 @@ body {
 <body>
 <% if(result){  %>
 <script>
-	location.href='insert_test.jsp';
+	alert('<%=donworryDTO.getName() %>님 회원가입 되었습니다.')
+	location.href='../login.jsp';
 </script>
 <%}else{ %>
 <script>
-	alert('글쓰기 실패');
+	alert('회원가입 실패');
 	location.href='javascript:history.back()';
 </script>
 <% } %>
