@@ -31,7 +31,10 @@ body {
 </style>
 </head>
 <body>
-<%if(result!=""){ %>
+<%if(result!=""){ 
+	session.setAttribute("id", id);	
+	session.setAttribute("name", result);
+%>
 <script>
 	location.href="main_insert.jsp?id=<%=donworryDTO.getId()%>";
 </script>

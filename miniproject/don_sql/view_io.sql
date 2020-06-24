@@ -58,5 +58,7 @@ CREATE TABLE members
 	PRIMARY KEY (no)
 );
 
-
+insert into input_output(no, id, regdate, category, io, money, memo) 
+values (input_output_no_seq.nextval, 
+'2E5CC574DAD9D98FFFD0984F76BFBB13', '2020-06-04', 1, 1, 10000, NULL) 
 
