@@ -1,4 +1,5 @@
-<%@page import="donWorry.donWorryDTO"%>
+<%@page import="donWorry.MembersDTO"%>
+<%@page import="donWorry.InputOutputDTO"%>
 <%@page import="donWorry.donWorryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,14 +9,14 @@
 	String id 		= request.getParameter("id");
 	String email 	= request.getParameter("email");
 	
-	donWorryDTO donworryDTO = new donWorryDTO();
-	donworryDTO.setName(name);
-	donworryDTO.setPassword(password);
-	donworryDTO.setId(id);
-	donworryDTO.setEmail(email);
+	MembersDTO membersDTO = new MembersDTO();
+	membersDTO.setName(name);
+	membersDTO.setPassword(password);
+	membersDTO.setId(id);
+	membersDTO.setEmail(email);
 	
 	donWorryDAO donworryDAO = donWorryDAO.getInstance();
-	boolean result = donworryDAO.insertdonWorry(donworryDTO);
+	boolean result = donworryDAO.insertdonWorry(membersDTO);
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@ body {
 <body>
 <% if(result){  %>
 <script>
-	alert('<%=donworryDTO.getName() %>님 회원가입 되었습니다.')
+	alert('<%=membersDTO.getName() %>님 회원가입 되었습니다.')
 	location.href='../login.jsp';
 </script>
 <%}else{ %>

@@ -47,7 +47,7 @@
 </tr>
 <tr>
 	<th>내역</th>
-	<td><input type="text" name="comment" /></td>
+	<td><input type="text" name="memo" /></td>
 </tr>
 
 </table>
