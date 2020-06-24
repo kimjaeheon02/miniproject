@@ -1,4 +1,4 @@
-<%@page import="donWorry.donWorryDAO"%>
+<%@page import="donWorry.CashBookDAO"%>
 <%@page import="donWorry.InputOutputDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,7 +18,7 @@
 	inputoutputDTO.setMoney(money);
 	inputoutputDTO.setMemo(memo);
 	
-	donWorryDAO donworryDAO = donWorryDAO.getInstance();
+	donWorry.CashBookDAO donworryDAO = donWorry.CashBookDAO.getInstance();
 	boolean result = donworryDAO.insertMoney(inputoutputDTO);
 %>
 <!DOCTYPE html>

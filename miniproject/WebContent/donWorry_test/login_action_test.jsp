@@ -1,4 +1,5 @@
-<%@page import="donWorry.donWorryDAO"%>
+<%@page import="donWorry.MemberDTO"%>
+<%@page import="donWorry.CashBookDAO"%>
 <%@page import="donWorry.InputOutputDTO"%>
 <%@page import="java.util.List"%>
 
@@ -8,13 +9,13 @@
 	String id 		= request.getParameter("id");
 	String password = request.getParameter("password");
 	
-	donWorry.InputOutputDTO donworryDTO = new donWorry.InputOutputDTO();
-	donworryDTO.setId(id);
-	donworryDTO.setPassword(password);
+	MemberDTO memberDTO = new MemberDTO();
+	memberDTO.setId(id);
+	memberDTO.setPassword(password);
 	
-	donWorryDAO donworryDAO = donWorryDAO.getInstance();
+	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
 	//List<donWorryDTO> list = donworryDAO.checkdonWorry();
-	String result = donworryDAO.checkdonWorry(donworryDTO);
+	String result = cashBookDAO.checkdonWorry(memberDTO);
 %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@ body {
 	session.setAttribute("name", result);
 %>
 <script>
-	location.href="main_insert.jsp?id=<%=donworryDTO.getId()%>";
+	location.href="main_insert.jsp";
 </script>
 <%}else{ %>
 <script>

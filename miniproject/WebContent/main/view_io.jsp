@@ -1,5 +1,17 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="donWorry.CategoryDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="donWorry.CashBookDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String id = (String) session.getAttribute("id");
+	String name = (String) session.getAttribute("name");
+	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
+	List<CategoryDTO> cate_list = cashBookDAO.getCateList(id);
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +40,13 @@ function cancel_category() {
 	document.getElementById('insert_category').style.display = 'none';
 }
 
+function go_logout() {
+	if(confirm('정말로 로그아웃 하시겠습니까')) {
+		location.href='../logout.jsp';
+		
+	}
+}
+
 </script>
 </head>
 <body>
@@ -35,18 +54,23 @@ function cancel_category() {
 <a href="deposit_details.jsp"><button type="button" class="btn btn-danger">입출내역</button></a>
 <a href="statistic.jsp"><button type="button" class="btn btn-success">지출분석</button></a>
 <hr/>
+<%=name %>
+(<%=id %>) 
+<button type="button" onclick="go_logout()">Logout</button>
+<br/>
 <form action="io_action.jsp" method="post">
-간편보기 <br/>
+
 <table>
 <tr>
 	<th>날짜</th>
-	<td><input type="date" name="regdate" /></td>
+	<td><input type="date" name="regdate" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>"/></td>
 </tr>
 <tr>
 	<th>카테고리</th>
 	<td><select name="category">
-			<option value="1">교통비</option>
-			<option value="2">식비</option>
+		<% for(CategoryDTO categoryDTO : cate_list) {%>
+			<option value="<%=categoryDTO.getNo()%>"><%=categoryDTO.getCate_name()%></option>
+		<% } %>
 		</select>
 		<button type="button" id="btnAdd" onclick="del_category()">삭제</button>
 		<button type="button" id="btnAdd" onclick="add_category()">추가</button>
@@ -63,7 +87,7 @@ function cancel_category() {
 			<option value="1">수입</option>
 			<option value="2">지출</option>
 		</select>
-		<input type="number" name="money" /></td>
+		<input type="number" name="money" required="required"/></td>
 </tr>
 <tr>
 	<th>내역</th>

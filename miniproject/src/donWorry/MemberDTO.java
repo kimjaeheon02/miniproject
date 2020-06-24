@@ -2,7 +2,7 @@ package donWorry;
 
 import java.io.Serializable;
 
-public class MembersDTO implements Serializable{
+public class MemberDTO implements Serializable{
 	private Long no;
 	private String id;
 	private String name;
