@@ -3,6 +3,7 @@ package donWorry;
 import java.io.Serializable;
 
 public class donWorryDTO implements Serializable{
+	private Long no;
 	private String id;
 	private String name;
 	private String password;
@@ -11,6 +12,14 @@ public class donWorryDTO implements Serializable{
 	private String date;
 	private Long income;
 	private Long expense;
+	
+	
+	public Long getNo() {
+		return no;
+	}
+	public void setNo(Long no) {
+		this.no = no;
+	}
 	public String getId() {
 		return id;
 	}

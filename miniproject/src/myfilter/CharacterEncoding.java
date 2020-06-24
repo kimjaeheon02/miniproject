@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class CharacterEncoding
  */
-@WebFilter("/CharacterEncoding")
+@WebFilter(filterName = "/CharacterEncoding", urlPatterns = "/*")
 public class CharacterEncoding implements Filter {
 
     public CharacterEncoding() {

@@ -1,5 +1,5 @@
-
-
+drop table members purge;
+drop sequence members_no_seq;
 
 create table members(
 no number primary key,
@@ -15,5 +15,5 @@ nocache;
 
 select * from members;
 
-drop table members purge;
-drop sequence members_no_seq;
+delete * from MEMBERS
+where no = 1 or no = 2;

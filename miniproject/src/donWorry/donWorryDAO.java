@@ -34,8 +34,8 @@ public class donWorryDAO {
 		PreparedStatement pstmt = null;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" insert into members(id, password, name, private_no) ");
-		sql.append(" values (?, ?, ?, ?) ");
+		sql.append(" insert into members(no, id, password, name, email) ");
+		sql.append(" values (members_no_seq.nextval, ?, ?, ?, ?) ");
 		
 		try {
 			conn = getConnection();
