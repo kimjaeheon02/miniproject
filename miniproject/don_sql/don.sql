@@ -14,6 +14,3 @@ increment by 1
 nocache;
 
 select * from members;
-
-delete * from MEMBERS
-where no = 1 or no = 2;
