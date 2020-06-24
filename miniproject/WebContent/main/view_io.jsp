@@ -17,6 +17,18 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
 </style>
+<script type="text/javascript">
+function add_category() {
+	console.log('add_category');
+	document.getElementById('insert_category').style.display = 'block';
+}
+
+function cancel_category() {
+	console.log('cancel_category');
+	document.getElementById('insert_category').style.display = 'none';
+}
+
+</script>
 </head>
 <body>
 <a href="view_io.jsp"><button type="button" class="btn btn-primary">간편보기</button></a>
@@ -35,7 +47,15 @@
 	<td><select name="category">
 			<option value="1">교통비</option>
 			<option value="2">식비</option>
-		</select></td>
+		</select>
+		<button type="button" id="btnAdd" onclick="del_category()">삭제</button>
+		<button type="button" id="btnAdd" onclick="add_category()">추가</button>
+		<div id="insert_category" style="display: none;">
+			<input type="text" name="cate_name" />
+			<button type="button">확인</button>
+			<button type="button" onclick="cancel_category()">취소</button>
+		</div>
+	</td>
 </tr>
 <tr>
 	<th>금액</th>

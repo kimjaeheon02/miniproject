@@ -14,3 +14,5 @@ increment by 1
 nocache;
 
 select * from members;
+
+select * from INPUT_OUTPUT;
