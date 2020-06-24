@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-<!-- Meta, title, CSS, favicons, etc. -->
+<!-- Meta, title, CSS, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,13 +41,13 @@
 			<!-- 로그인 페이지 Start -->
 			<div class="animate form login_form">
 				<section class="login_content">
-					<form id="login-register" action="login_action_test.jsp" method="post">
+					<form id="login-register" action="login-check.do" method="post">
 						<h1>
 							<a href="main.do"><img src="resources/img/logo/돈.png"></a>
 						</h1>
 						<div>
-							<input type="email" class="form-control" placeholder="아이디"
-								id="User_email_forget" name="id" />
+							<input type="text" class="form-control" placeholder="아이디"
+								id="User_id_forget" name="id" />
 						</div>
 						<div>
 							<input type="password" class="form-control"
@@ -82,20 +82,20 @@
 			<!-- 회원가입 페이지 Start -->
 			<div id="register" class="animate form registration_form">
 				<section class="login_content">
-					<form id="signup-register" action="insert_action_test.jsp" method="post">
+					<form id="signup-register" action="/donWorry_test/insert_action_test.jsp" method="post">
 						<p class="Create-Account">회원가입
 						<p>
 						<div>
 							<input type="email" class="form-control" placeholder="이메일"
-								id="User_email" name="email" />
+								id="email" name="email" />
 						</div>
 							<div>
 							<input type="text" class="form-control"
-								placeholder="아이디" id="User_id" name="id" />
+								placeholder="아이디" id="id" name="id" />
 						</div>
 						<div>
 							<input type="password" class="form-control"
-								placeholder="비밀번호" id="User_pw" name="password" />
+								placeholder="비밀번호" id="password" name="password" />
 						</div>
 						<div>
 							<input type="password" class="form-control"
@@ -103,7 +103,7 @@
 						</div>
 						<div>
 							<input type="text" class="form-control" placeholder="이름"
-								id="User_name" name="name" />
+								id="name" name="name" />
 						</div>
 						<div>
 							<input type="button" class="btn btn-default Rectangle-Signup-Copy" 
