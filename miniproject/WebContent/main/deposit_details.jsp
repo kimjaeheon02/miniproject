@@ -4,12 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = request.getParameter("id");
+	String id = (String)session.getAttribute("id");
 	
 	InputOutputDTO inputoutputDTO = new InputOutputDTO();
 	
 	CashBookDAO cashbookDAO = CashBookDAO.getInstance();
 	List<InputOutputDTO> io_list = cashbookDAO.getInputOutput(id);
+	
 	
 %>
 <!DOCTYPE html>
@@ -25,13 +26,15 @@
 <style type="text/css">
 body {
 		font-family: 'Nanum Gothic Coding', monospace;
-		font-size: 20px;]
+		font-size: 20px;
 }
 </style>
 <script type="text/javascript">
-function reply_click(clicked_id)
+function reply_click(no)
 {
-	alert(clicked_id);
+	if(confirm('정말로 삭제하시겠습니꺄?')) {
+		location.href='delete.jsp?no=' + no;
+	}
 }
 </script>
 </head>
@@ -41,16 +44,16 @@ function reply_click(clicked_id)
 <a href="statistic.jsp"><button type="button" class="btn btn-success">지출분석</button></a>
 <hr/>
 입출내역
-<form action="delete_action/jsp?">
+<form action="main/delete_action/jsp">
 <table border="1">
 <% for(InputOutputDTO dto :io_list){ %>
 <tr>
 	<td><%=dto.getRegdate() %></td>
-	<td><%=dto.getIo() %></td>
+	<td><%=dto.getIo() == 1 ? "수입" : "지출" %></td>
 	<td><%=dto.getMoney() %></td>
 	<td><%=dto.getCate_name() %></td>
 	<td><%=dto.getMemo() %></td>
-	<td><button type="button" onclick="reply_click(this.id)" id="<%=dto.getNo()%>" >-</button></td>
+	<td><button type="button" onclick="reply_click(<%=dto.getNo()%>)">-</button></td>
 </tr>
 
 <% } %>

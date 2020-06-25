@@ -36,7 +36,9 @@ body {
 </style>
 </head>
 <body>
-<%if(result) {%>
+<%if(result) {
+	response.sendRedirect("deposit_details.jsp");
+%>
 	regdate:<%=regdate %><br/>
 	category: <%=category %><br/>
 	io: <%=io %><br/>

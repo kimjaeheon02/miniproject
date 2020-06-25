@@ -3,15 +3,15 @@ package donWorry;
 import java.io.Serializable;
 
 public class MemberDTO implements Serializable{
-	private Long no;
+	private int no;
 	private String id;
 	private String name;
 	private String password;
 	private String email;
-	public Long getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(Long no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getId() {

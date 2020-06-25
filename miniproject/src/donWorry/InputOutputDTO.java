@@ -3,7 +3,7 @@ package donWorry;
 import java.io.Serializable;
 
 public class InputOutputDTO implements Serializable{
-	private Long no;
+	private int no;
 	private String id;
 	private String regdate; 
 	private int category;
@@ -13,11 +13,11 @@ public class InputOutputDTO implements Serializable{
 	
 	private String cate_name;
 
-	public Long getNo() {
+	public int getNo() {
 		return no;
 	}
 
-	public void setNo(Long no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 
@@ -82,7 +82,7 @@ public class InputOutputDTO implements Serializable{
 		return "InputOutputDTO [no=" + no + ", id=" + id + ", regdate=" + regdate + ", category=" + category + ", io="
 				+ io + ", money=" + money + ", memo=" + memo + ", cate_name=" + cate_name + "]";
 	}
-	
+
 	
 
 }

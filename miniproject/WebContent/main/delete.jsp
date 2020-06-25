@@ -4,10 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-   long no = Long.parseLong(request.getParameter("no"));
-
+	String id = (String)session.getAttribute("id");
+   int no = Integer.parseInt(request.getParameter("no"));
    InputOutputDTO inputoutputDTO = new InputOutputDTO();
    inputoutputDTO.setNo(no);
+   inputoutputDTO.setId(id);
+   
    
    CashBookDAO cashBookDAO = CashBookDAO.getInstance();
    boolean result = cashBookDAO.deleteInputOutput(inputoutputDTO);
@@ -29,7 +31,7 @@ body {
 <body>
 <script type="text/javascript">
 <%   if(result) { %>
-   location.href='javascript:history.back();';
+   location.href='deposit_details.jsp';
 <%  } else     { %>
    alert('삭제 오류');
    location.href='javascript:history.back();';

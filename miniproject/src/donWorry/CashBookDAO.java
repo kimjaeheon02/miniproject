@@ -177,18 +177,18 @@ public class CashBookDAO {
 		List<InputOutputDTO> list = new ArrayList<>();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" select io.no, io.regdate, io.money, c.cate_name, io.memo,");
+		sql.append(" select io.no, to_char(io.regdate,'YYYY/MM/DD') as regdate, io.money, c.cate_name, io.memo,");
 		sql.append(" io.io");
 		sql.append(" from input_output io left join category c");
-		sql.append(" on io.id = ? and io.category = c.no");
-		
+		sql.append(" on io.category = c.no");
+		sql.append(" where io.id = ?");
 		try(Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
 			pstmt.setString(1, id);
 			try(ResultSet rs = pstmt.executeQuery()){
 				while(rs.next()) {
 					InputOutputDTO inputoutputDTO = new InputOutputDTO();
-					inputoutputDTO.setNo(rs.getLong("no"));
+					inputoutputDTO.setNo(rs.getInt("no"));
 					inputoutputDTO.setRegdate(rs.getString("regdate"));
 					inputoutputDTO.setIo(rs.getInt("io"));
 					inputoutputDTO.setMoney(rs.getInt("money"));
@@ -206,13 +206,14 @@ public class CashBookDAO {
 
 	      StringBuffer sql= new StringBuffer();
 	      sql.append(" delete input_output");
-	      sql.append(" where no = ?");
+	      sql.append(" where no = ? and id = ?");
 	      
 	      
 	      try (Connection conn = getConnection();
 	         PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
 	         
-	         pstmt.setLong(1, inputoutputDTO.getNo());
+	         pstmt.setInt(1, inputoutputDTO.getNo());
+	         pstmt.setString(2, inputoutputDTO.getId());
 	         if(pstmt.executeUpdate() > 0) {
 	            result = true;
 	         }
@@ -221,6 +222,33 @@ public class CashBookDAO {
 	      } 
 	      return result;
 	   }
+
+	public boolean insertCategory(CategoryDTO categoryDTO) {
+		boolean result = false;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" insert into category (no, cate_name, id)");
+		sql.append(" values(category_no_seq.nextval, ?, ?)");
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, categoryDTO.getCate_name());
+			pstmt.setString(2, categoryDTO.getId());
+			int r = pstmt.executeUpdate();
+			if(r>0) {
+				result = true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(Exception e) {}
+			if(conn!=null)try {pstmt.close();}catch(Exception e) {}
+		}
+		return result;
+	}
 	
 //	public boolean AdditionalCategory(String cate_name) {
 //		boolean result = false;

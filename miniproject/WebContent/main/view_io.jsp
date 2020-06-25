@@ -34,6 +34,7 @@
 function add_category() {
 	console.log('add_category');
 	document.getElementById('insert_category').style.display = 'block';
+	document.getElementById('cate_name').focus();
 }
 
 function cancel_category() {
@@ -49,16 +50,23 @@ function go_logout() {
 }
 
 function enter_category(){
-	
+	if($('#cate_name').val() == '') {
+		alert('추가할 카테고리를 입력하세요');
+		$('#cate_name').focus();
+		return;
+	}
 	$.ajax({
 		url : "enter_category.jsp",
 		type : "POST",
-		data : $("#go_category").serialize(),
+		data : {
+			"cate_name" : $("#cate_name").val()
+		},
 		success : function(data) {
 			if (data.trim() == "false") {
-				alert("false");
+				alert("중복된 카테고리 명이거나 오류가 있습니다.");
 			} else {
-				alert("good");
+				alert("카테고리가 추가되었습니다.");
+				location.reload();
 			}
 		},
 		error : function() {
@@ -70,7 +78,7 @@ function enter_category(){
 </head>
 <body>
 <a href="view_io.jsp"><button type="button" class="btn btn-primary">간편보기</button></a>
-<a href="deposit_details.jsp?id=<%=id %>"><button type="button" class="btn btn-danger">입출내역</button></a>
+<a href="deposit_details.jsp"><button type="button" class="btn btn-danger">입출내역</button></a>
 <a href="statistic.jsp"><button type="button" class="btn btn-success">지출분석</button></a>
 <hr/>
 <%=name %>
@@ -93,8 +101,7 @@ function enter_category(){
 		<button type="button" id="btnAdd" onclick="del_category()">삭제</button>
 		<button type="button" id="btnAdd" onclick="add_category()">추가</button>
 		<div id="insert_category" style="display: none;">
-
-			<input type="text" name="cate_name" />
+			<input type="text" name="cate_name" id="cate_name" />
 			<button type="button" id="go_category" onclick="enter_category();">확인</button>
 			<button type="button" onclick="cancel_category();">취소</button>
 
