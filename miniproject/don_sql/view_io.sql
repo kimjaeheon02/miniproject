@@ -49,7 +49,6 @@ CREATE TABLE category
 	PRIMARY KEY (no)
 );
 
-
 CREATE TABLE input_output
 (
 	no number NOT NULL,
@@ -62,6 +61,19 @@ CREATE TABLE input_output
 	PRIMARY KEY (no)
 );
 
+select id, regdate, money, memo
+	 , decode (io, 1, '수입'
+	 			    , '지출')
+from input_output
+where id = 'test';
+
+select io.no, io.id, io.regdate, io.money, c.cate_name, io.memo
+from input_output io left join category c
+on io.id = 'test' and io.category = c.no;
+
+select * from category;
+select * from category where id = 'test';
+select * from input_output;
 
 CREATE TABLE members
 (

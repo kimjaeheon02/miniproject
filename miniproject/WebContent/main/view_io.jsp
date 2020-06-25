@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <title>DonWorry</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
 <!-- Required meta tags -->
@@ -47,19 +48,36 @@ function go_logout() {
 	}
 }
 
+function enter_category(){
+	
+	$.ajax({
+		url : "enter_category.jsp",
+		type : "POST",
+		data : $("#go_category").serialize(),
+		success : function(data) {
+			if (data.trim() == "false") {
+				alert("false");
+			} else {
+				alert("good");
+			}
+		},
+		error : function() {
+			alert("error");
+		}
+	});
+}
 </script>
 </head>
 <body>
 <a href="view_io.jsp"><button type="button" class="btn btn-primary">간편보기</button></a>
-<a href="deposit_details.jsp"><button type="button" class="btn btn-danger">입출내역</button></a>
+<a href="deposit_details.jsp?id=<%=id %>"><button type="button" class="btn btn-danger">입출내역</button></a>
 <a href="statistic.jsp"><button type="button" class="btn btn-success">지출분석</button></a>
 <hr/>
 <%=name %>
 (<%=id %>) 
 <button type="button" onclick="go_logout()">Logout</button>
 <br/>
-<form action="io_action.jsp" method="post">
-
+<form action="io_action.jsp" id="submit" method="post">
 <table>
 <tr>
 	<th>날짜</th>
@@ -75,9 +93,11 @@ function go_logout() {
 		<button type="button" id="btnAdd" onclick="del_category()">삭제</button>
 		<button type="button" id="btnAdd" onclick="add_category()">추가</button>
 		<div id="insert_category" style="display: none;">
+
 			<input type="text" name="cate_name" />
-			<button type="button">확인</button>
-			<button type="button" onclick="cancel_category()">취소</button>
+			<button type="button" id="go_category" onclick="enter_category();">확인</button>
+			<button type="button" onclick="cancel_category();">취소</button>
+
 		</div>
 	</td>
 </tr>
@@ -95,7 +115,7 @@ function go_logout() {
 </tr>
 
 </table>
-<button type="submit" >입력</button>
+<button type="submit" id="submit">입력</button>
 </form>
 </body>
 </html>
