@@ -10,7 +10,6 @@
 	String name = (String) session.getAttribute("name");
 	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
 	List<CategoryDTO> cate_list = cashBookDAO.getCateList(id);
-	
 %>
 <!DOCTYPE html>
 <html>

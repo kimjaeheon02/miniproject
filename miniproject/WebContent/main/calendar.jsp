@@ -8,7 +8,7 @@
 <%
 SimpleDateFormat date_format = new SimpleDateFormat ("yyyy");
 Date date = new Date ();
-int year = Integer.parseInt(date_format.format (date));
+int t_year = Integer.parseInt(date_format.format (date));
 
 //String id = (String)session.getAttribute("test");
 
@@ -19,7 +19,7 @@ CashBookDAO cashbookDAO = CashBookDAO.getInstance();
 int reg_date = cashbookDAO.CalDate(memberDTO);
 
 Calendar c = Calendar.getInstance();
-c.set(2020, 6 - 1, 1);
+c.set(t_year, 6 - 1, 1);
 
 int week = c.get(Calendar.DAY_OF_WEEK);
 int endday = c.getActualMaximum(Calendar.DATE);
@@ -37,18 +37,27 @@ body {
 		font-size:25px;
      }
 </style>
+<script type="text/javascript">
+function change_date() {
+	var selectyear = document.getElementById('year_select').value;
+	var selectmonth = document.getElementById('month_select').value;
+	alert(selectyear +"년 " + selectmonth + "월");
+	
+	
+}
+</script>
 </head>
 <body>
 <%out.println("가입 년도 : "+ reg_date); %>
-<%out.println("현재 년도 : "+ year); %>
-<select name="year">
-			<%for(int i=reg_date; i<=year; i++) {%>
-			<option value="year"><%=i %></option>
+<%out.println("현재 년도 : "+ t_year); %>
+<select id ="year_select" name="year">
+			<%for(int i=reg_date; i<=t_year; i++) {%>
+			<option value="<%=i%>"><%=i %></option>
 			<%} %>
 </select>
-<select name="month">
+<select id="month_select" name="month" onChange="change_date(this.form);">
 			<%for(int i=1; i<13; i++) {%>
-			<option value="month"><%=i %></option>
+			<option value="<%=i%>"><%=i %></option>
 			<%} %>
 </select>
 <table>
