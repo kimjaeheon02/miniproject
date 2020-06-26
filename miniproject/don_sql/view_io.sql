@@ -53,7 +53,7 @@ alter table category
 add constraint category_catenameid_uk unique(cate_name, id);
 -- 꼭 실행시킬 것........
 
-
+-- meber table column 추가
 alter table members
 add (regist_date date not null);
 delete members;
