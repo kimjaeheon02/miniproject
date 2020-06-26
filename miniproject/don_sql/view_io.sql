@@ -136,7 +136,7 @@ where io.io = 2 and io.id = 'wishrich';
 
 select * from input_output;
 
-update input_output set regdate = '20200501';
+update input_output set io = 2;
 
 select sum(money)
 from input_output
@@ -148,5 +148,8 @@ from input_output;
 
 select sum(money)
 from input_output
-where id like 'test' and to_char(regdate, 'yyyyMM')  like '202005'
+where id like 'test' and to_char(regdate, 'yyyyMM')  like '202005' and io = 1
 group by id;
+
+select sum(money) as money2 from input_output where id like 'test' and to_char(regdate, 'yyyyMM') 
+like '202006' and io = 2 group by id

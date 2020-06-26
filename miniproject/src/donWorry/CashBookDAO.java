@@ -278,12 +278,12 @@ public class CashBookDAO {
 	}
 	
 	public String TotalMoney(InputOutputDTO inputoutputDTO) throws SQLException{
-		String result = new String();
+		String result = "";
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" select sum(money)");
+		sql.append(" select sum(money) as money2");
 		sql.append(" from input_output");
-		sql.append(" where id like ? and to_char(regdate, 'yyyyMM')  like ?");
+		sql.append(" where id like ? and to_char(regdate, 'yyyyMM')  like ? and io = 2");
 		sql.append(" group by id");
 		
 		try(Connection conn = getConnection();
@@ -291,11 +291,9 @@ public class CashBookDAO {
 			pstmt.setString(1, inputoutputDTO.getId());
 			pstmt.setString(2, inputoutputDTO.getRegdate());
 			try(ResultSet rs = pstmt.executeQuery()){
-				while(rs.next()) {
 					if(rs.next()) {
-						result = rs.getString("money");
+						result = rs.getString("money2");
 					}
-				}
 			}
 		}
 		return result;

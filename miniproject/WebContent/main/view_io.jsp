@@ -7,9 +7,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	SimpleDateFormat date_format = new SimpleDateFormat ("yyyymm");
+	SimpleDateFormat date_format = new SimpleDateFormat ("yyyyMM");
 	Date date = new Date ();
-	String this_month = date_format.format (date);
+	String this_month = date_format.format(date);
 
 	String id = (String) session.getAttribute("id");
 	String name = (String) session.getAttribute("name");
@@ -87,15 +87,18 @@ function enter_category(){
 </script>
 </head>
 <body>
+<table>
+<td>
 <a href="view_io.jsp"><button type="button" class="btn btn-primary">간편보기</button></a>
 <a href="deposit_details.jsp"><button type="button" class="btn btn-danger">입출내역</button></a>
 <a href="statistic.jsp"><button type="button" class="btn btn-success">지출분석</button></a>
 <hr/>
+이번달 지출 : <%=month_money %><br/>
 <%=name %>
 (<%=id %>) 
 <button type="button" onclick="go_logout()">Logout</button>
 <br/>
-<form action="io_action.jsp" id="submit" method="post">
+<form action="io_action.jsp" id="submit" method="post" >
 <table>
 <tr>
 	<th>날짜</th>
@@ -134,5 +137,10 @@ function enter_category(){
 </table>
 <button type="submit" id="submit">입력</button>
 </form>
+</span>
+<td>
+<iframe width="600" height="300" src="calendar.jsp" name="calendar" id="calendar" frameborder="0" scrolling="yes" align="left">
+</td>
+</table>
 </body>
 </html>

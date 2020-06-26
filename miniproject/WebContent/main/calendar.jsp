@@ -8,7 +8,7 @@
 <%
 SimpleDateFormat date_format = new SimpleDateFormat ("yyyy");
 Date date = new Date ();
-int t_year = Integer.parseInt(date_format.format (date));
+int t_year = Integer.parseInt(date_format.format(date));
 
 //String id = (String)session.getAttribute("test");
 
@@ -19,7 +19,19 @@ CashBookDAO cashbookDAO = CashBookDAO.getInstance();
 int reg_date = cashbookDAO.CalDate(memberDTO);
 
 Calendar c = Calendar.getInstance();
-c.set(t_year, 6 - 1, 1);
+int this_year;
+int this_month;
+try {
+	this_year = Integer.parseInt(request.getParameter("year"));
+	this_month= Integer.parseInt(request.getParameter("month"));
+	c.set(this_year, this_month-1, 1);
+} catch(NumberFormatException e) {}
+
+this_year = c.get(Calendar.YEAR);
+this_month= c.get(Calendar.MONTH) + 1;
+c.set(this_year, this_month-1, 1);
+
+out.println(this_year + "/" + this_month);
 
 int week = c.get(Calendar.DAY_OF_WEEK);
 int endday = c.getActualMaximum(Calendar.DATE);
@@ -38,31 +50,46 @@ body {
      }
 </style>
 <script type="text/javascript">
-function change_date() {
-	var selectyear = document.getElementById('year_select').value;
-	var selectmonth = document.getElementById('month_select').value;
-	alert(selectyear +"년 " + selectmonth + "월");
-	
-	
+function change_calendar() {
+	let f = document.cal_form;
+	f.year.value = f.vyear.options[f.vyear.selectedIndex].value;
+	f.month.value= f.vmonth.options[f.vmonth.selectedIndex].value;
+	f.submit();
+}
+
+function add_month(num) {
+	console.log('test')
+	let f = document.cal_form;
+	f.year.value = f.vyear.options[f.vyear.selectedIndex].value;
+	f.month.value= parseInt(f.vmonth.options[f.vmonth.selectedIndex].value) + num;
+	f.submit();
 }
 </script>
 </head>
 <body>
 <%out.println("가입 년도 : "+ reg_date); %>
-<%out.println("현재 년도 : "+ t_year); %>
-<select id ="year_select" name="year">
-			<%for(int i=reg_date; i<=t_year; i++) {%>
-			<option value="<%=i%>"><%=i %></option>
-			<%} %>
-</select>
-<select id="month_select" name="month" onChange="change_date(this.form);">
-			<%for(int i=1; i<13; i++) {%>
-			<option value="<%=i%>"><%=i %></option>
-			<%} %>
-</select>
+
+<form method="post" name="cal_form">
 <table>
-	<caption><%=2020 %>	년
-			 <%=6 %> 월<br></caption>
+	<caption>
+	<button type="button" onclick="add_month(-12)">≪</button>
+	<button type="button" onclick="add_month(-1)">＜</button>
+	<select id="vyear" name="vyear" onchange="change_calendar()">
+			<%for(int i=this_year - 5; i<=this_year + 5; i++) { %>
+			<option value="<%=i%>" <%=i == this_year ? " selected ":"" %>><%=i %></option>
+			<%} %>
+	</select>년
+	<select id="vmonth" name="vmonth" onchange="change_calendar()">
+			<%for(int i=1; i<=12; i++) {%>
+			<option value="<%=i%>" <%=i == this_month? " selected ":"" %>><%=i %></option>
+			<%} %>
+	</select> 월
+	<input type="hidden" name="year" />
+	<input type="hidden" name="month" />
+	
+	<button type="button" onclick="add_month(1)">＞</button>
+	<button type="button" onclick="add_month(12)">≫</button>
+	<br></caption>
 <tr>
 	<th> 일 </th>
 	<th> 월 </th>
@@ -90,5 +117,6 @@ for(int d=1, w = week; d <=endday; d++, w++) {%>
 %>
 </tr>
 </table>
+</form>
 </body>
 </html>
