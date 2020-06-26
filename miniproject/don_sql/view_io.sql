@@ -133,3 +133,20 @@ from input_output io
 inner join category cg
 on io.category = cg.no
 where io.io = 2 and io.id = 'wishrich';
+
+select * from input_output;
+
+update input_output set regdate = '20200501';
+
+select sum(money)
+from input_output
+where id = 'test' and regdate = '20200627'
+group by id;
+
+select to_char(regdate, 'yyyyMM')
+from input_output;
+
+select sum(money)
+from input_output
+where id like 'test' and to_char(regdate, 'yyyyMM')  like '202005'
+group by id;

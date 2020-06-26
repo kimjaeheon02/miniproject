@@ -1,3 +1,4 @@
+<%@page import="donWorry.InputOutputDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="donWorry.CategoryDTO"%>
@@ -6,9 +7,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	SimpleDateFormat date_format = new SimpleDateFormat ("yyyymm");
+	Date date = new Date ();
+	String this_month = date_format.format (date);
+
 	String id = (String) session.getAttribute("id");
 	String name = (String) session.getAttribute("name");
+	
+	InputOutputDTO inputoutputDTO = new InputOutputDTO();
+	inputoutputDTO.setId(id);
+	inputoutputDTO.setRegdate(this_month);
+	
 	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
+	String month_money = cashBookDAO.TotalMoney(inputoutputDTO);
 	List<CategoryDTO> cate_list = cashBookDAO.getCateList(id);
 %>
 <!DOCTYPE html>

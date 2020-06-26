@@ -277,6 +277,30 @@ public class CashBookDAO {
 		return result;
 	}
 	
+	public String TotalMoney(InputOutputDTO inputoutputDTO) throws SQLException{
+		String result = new String();
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append(" select sum(money)");
+		sql.append(" from input_output");
+		sql.append(" where id like ? and to_char(regdate, 'yyyyMM')  like ?");
+		sql.append(" group by id");
+		
+		try(Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+			pstmt.setString(1, inputoutputDTO.getId());
+			pstmt.setString(2, inputoutputDTO.getRegdate());
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					if(rs.next()) {
+						result = rs.getString("money");
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
 //	public boolean AdditionalCategory(String cate_name) {
 //		boolean result = false;
 //		Connection conn = null;
