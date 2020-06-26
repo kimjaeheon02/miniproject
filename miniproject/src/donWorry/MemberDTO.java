@@ -3,11 +3,21 @@ package donWorry;
 import java.io.Serializable;
 
 public class MemberDTO implements Serializable{
+	private String regist_date;
 	private int no;
 	private String id;
 	private String name;
 	private String password;
 	private String email;
+	
+	
+	
+	public String getRegist_date() {
+		return regist_date;
+	}
+	public void setRegist_date(String regist_date) {
+		this.regist_date = regist_date;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -40,11 +50,9 @@ public class MemberDTO implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "MembersDTO [no=" + no + ", id=" + id + ", name=" + name + ", password=" + password + ", email=" + email
-				+ "]";
+		return "MemberDTO [regist_date=" + regist_date + ", no=" + no + ", id=" + id + ", name=" + name + ", password="
+				+ password + ", email=" + email + "]";
 	}
-	
-	
 
 	
 }

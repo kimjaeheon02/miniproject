@@ -1,19 +1,27 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="donWorry.MemberDTO"%>
 <%@page import="donWorry.InputOutputDTO"%>
 <%@page import="donWorry.CashBookDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+	Date date = new Date();
+	String regist = format1.format(date);
+	
 	String name 	= request.getParameter("name");
 	String password = request.getParameter("password");
 	String id 		= request.getParameter("id");
 	String email 	= request.getParameter("email");
+	String regist_date = regist;
 	
 	MemberDTO membersDTO = new MemberDTO();
 	membersDTO.setName(name);
 	membersDTO.setPassword(password);
 	membersDTO.setId(id);
 	membersDTO.setEmail(email);
+	membersDTO.setRegist_date(regist);
 	
 	CashBookDAO cashBookDAO = CashBookDAO.getInstance();
 	boolean result = cashBookDAO.insertdonWorry(membersDTO);

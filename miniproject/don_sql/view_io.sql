@@ -54,8 +54,22 @@ add constraint category_catenameid_uk unique(cate_name, id);
 -- 꼭 실행시킬 것........
 
 
-select * from input_output;
+alter table members
+add (regist_date date not null);
+delete members;
 
+alter table members
+drop column regist_date;
+
+select * from members;
+delete category;
+
+update members set regist_date='2015-03-05' where id='test';
+
+select regist_date, id from members;
+select to_char(regist_date, 'yyyy') as reg_date
+from members
+where id = 'test';
 CREATE TABLE input_output
 (
 	no number NOT NULL,

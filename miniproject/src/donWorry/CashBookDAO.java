@@ -37,8 +37,8 @@ public class CashBookDAO {
 		PreparedStatement pstmt = null;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" insert into members(no, id, password, name, email) ");
-		sql.append(" values (members_no_seq.nextval, ?, ?, ?, ?) ");
+		sql.append(" insert into members(no, id, password, name, email, regist_date) ");
+		sql.append(" values (members_no_seq.nextval, ?, ?, ?, ?, ?) ");
 		
 		try {
 			conn = getConnection();
@@ -47,6 +47,7 @@ public class CashBookDAO {
 			pstmt.setString(2, membersDTO.getPassword());
 			pstmt.setString(3, membersDTO.getName());
 			pstmt.setString(4, membersDTO.getEmail());
+			pstmt.setString(5, membersDTO.getRegist_date());
 			if(pstmt.executeUpdate()>0) {
 				result = true;
 			}
@@ -246,6 +247,32 @@ public class CashBookDAO {
 		}finally {
 			if(pstmt!=null)try {pstmt.close();}catch(Exception e) {}
 			if(conn!=null)try {pstmt.close();}catch(Exception e) {}
+		}
+		return result;
+	}
+	
+	public int CalDate(MemberDTO memberDTO) throws SQLException {
+		int result = 0;
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append(" select to_char(regist_date, 'yyyy') as reg_date");
+		sql.append(" from members");
+		sql.append(" where id = ?");
+		
+		try(Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+			
+			pstmt.setString(1, memberDTO.getId());
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					result = Integer.parseInt(rs.getString("reg_date"));
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
