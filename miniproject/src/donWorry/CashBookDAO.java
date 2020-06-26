@@ -299,6 +299,28 @@ public class CashBookDAO {
 		return result;
 	}
 	
+	// 카테고리 삭제 
+	public boolean deleteCategory (CategoryDTO categoryDTO) { //
+	      boolean result = false;
+
+	      StringBuffer sql= new StringBuffer();
+	      sql.append(" delete category");
+	      sql.append(" where no = ? and id = ?");
+	      
+	      
+	      try (Connection conn = getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+	         
+	         pstmt.setInt(1, categoryDTO.getNo());
+	         pstmt.setString(2, categoryDTO.getId());
+	         if(pstmt.executeUpdate() > 0) {
+	            result = true;
+	         }
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } 
+	      return result;
+	   }
 //	public boolean AdditionalCategory(String cate_name) {
 //		boolean result = false;
 //		Connection conn = null;
